@@ -1,0 +1,24 @@
+{
+  "name": "alvarium/cake-oc",
+  "description": "OCClient plugin for CakePHP",
+  "type": "cakephp-plugin",
+  "require": {
+    "php": ">=5.5.9",
+    "cakephp/cakephp": ">=3.3.2",
+    "opencomponents/oc-client-php": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Alvarium\\OCClient\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Alvarium\\OCClient\\Test\\": "tests",
+      "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+    }
+  }
+}
