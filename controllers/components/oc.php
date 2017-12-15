@@ -39,9 +39,9 @@ class OcComponent extends Object
         try {
             $components = $client->renderComponents($components)['html'];
         } catch (\Exception $e) {
-            debug($e->getMessage());die;
             $components = [
-                '<script>console.log("There was an error loading an OC component")</script>'
+                "<script>console.error('There was an error loading an OC component:'," .
+                "JSON.stringify('{$e->getMessage()}'))</script>",
             ];
         }
 
