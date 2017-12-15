@@ -20,5 +20,6 @@
       "Alvarium\\OCClient\\Test\\": "tests",
       "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
     }
-  }
+  },
+  "license": "GPL-3.0"
 }
