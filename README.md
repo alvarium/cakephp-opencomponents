@@ -83,11 +83,11 @@ class PostsController extends AppController
 
     public function index()
     {
-        $this->Client->setComponents(
+        $this->Client->setComponents([
             [
               'name' => 'your-awesome-component',
               'parameters' => [
-                  'selector' => '#awesome-component',
+                  'comp1_selector' => '#awesome-component',
                   'key' => 'value',
                   'key2' => 'value2',
               ],
@@ -95,16 +95,16 @@ class PostsController extends AppController
             [
                 'name' => 'another-awesome-component',
                 'parameters' => [
-                    'selector' => '#awesome-component-2',
+                    'comp2_selector' => '#awesome-component-2',
                     'key12' => 'value12',
                     'key23' => 'value23',
                 ]
             ]
-        );
+        ]);
     }
 ~~~
 
-Note how we define the `selector` key. That's because we're able to define our
+Note how we define the `*_selector` key. That's because we're able to define our
 selectors for each component (meaning we need to define a layer with the
 appropriated selector in the view for each component).
 
