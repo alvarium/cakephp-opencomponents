@@ -58,7 +58,7 @@ class PostsController extends AppController
         parent::beforeRender($event);
 
         $this->viewBuilder()->helpers([
-            'Alvarium/OCclient.OC',
+            'Alvarium/OCClient.OC',
         ]);
     }
 }
@@ -105,10 +105,12 @@ class PostsController extends AppController
 ~~~
 
 Note how we define the `selector` key. That's because we're able to define our
-selectors for each component.
+selectors for each component (meaning we need to define a layer with the
+appropriated selector in the view for each component).
 
-This helper loads components appending them to the `script` view block. Depending
-on how do you work with your opencomponent widgets this could bring some issues.
+That's in part because this plugin's helper loads components appending them to
+the `script` view block. Depending on how do you work with your opencomponent
+widgets this could bring some issues.
 
 If so, you can just avoid using the helper and add the scripts wherever you want:
 
