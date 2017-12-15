@@ -32,10 +32,6 @@ class OcHelper extends AppHelper
         $view = ClassRegistry::getObject('view');
 
         $components = $view->viewVars['oc_components'];
-        // debug($view->viewVars);die;
-        // if (!$components) {
-        //     return false;
-        // }
         foreach ($components as $component) {
             $view->addScript($component);
         }
