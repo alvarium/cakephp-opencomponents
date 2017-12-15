@@ -57,7 +57,8 @@ class ClientComponent extends Component
             $components = $client->renderComponents($components)['html'];
         } catch (\Exception $e) {
             $components = [
-                '<script>console.log("There was an error loading an OC component")</script>'
+                "<script>console.error('There was an error loading an OC component:'," .
+                "JSON.stringify('{$e->getMessage()}'))</script>",
             ];
         }
 
