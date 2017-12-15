@@ -1,14 +1,8 @@
 <?php
-namespace Alvarium\OCClient\View\Helper;
-
-use Cake\Event\Event;
-use Cake\View\Helper;
-use Cake\View\View;
-
 /**
- * OC helper
+ * Oc Helper
  */
-class OCHelper extends Helper
+class OcHelper extends AppHelper
 {
     /**
      * Default configuration.
@@ -26,18 +20,24 @@ class OCHelper extends Helper
 
     /**
      * Appends any loaded component (using the ClientComponent)
-     * to the view's script tag.
+     * to the view's script_for_layout var.
      *
      * @param  Event  $event      Current event.
      * @param  string $layoutFile The layout filename.
      * @return void
      */
-    public function beforeLayout(Event $event, $layoutFile)
+    public function beforeRender()
     {
-        $view = $event->subject();
 
-        foreach ($view->get('oc_components') as $component) {
-            $view->append('script', $component);
+        $view = ClassRegistry::getObject('view');
+
+        $components = $view->viewVars['oc_components'];
+        // debug($view->viewVars);die;
+        // if (!$components) {
+        //     return false;
+        // }
+        foreach ($components as $component) {
+            $view->addScript($component);
         }
     }
 }

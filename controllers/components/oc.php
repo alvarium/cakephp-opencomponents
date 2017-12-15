@@ -1,25 +1,9 @@
 <?php
-namespace Alvarium\OCClient\Controller\Component;
-
-use Cake\Controller\Component;
-use Cake\Controller\ComponentRegistry;
-use Cake\Core\Configure;
-use Cake\Event\Event;
-use OpenComponents\Client;
-
 /**
- * Client component
+ * Oc-Client component
  */
-class ClientComponent extends Component
+class OcComponent extends Object
 {
-
-    /**
-     * Default configuration.
-     *
-     * @var array
-     */
-    protected $_defaultConfig = [];
-
     /**
      * Array containing all the resulting loaded components.
      *
@@ -32,9 +16,8 @@ class ClientComponent extends Component
         $this->_components = $this->renderComponents($components);
     }
 
-    public function beforeRender(Event $event)
+    public function beforeRender($controller)
     {
-        $controller = $event->subject();
         // Ensure there's always a `components` var in the view, even being empty...
         if (!isset($controller->viewVars['oc_components'])) {
             $controller->set('oc_components', $this->_components);
@@ -43,7 +26,7 @@ class ClientComponent extends Component
 
     public function renderComponents(array $components, $loadClient = true)
     {
-        $client = new Client([
+        $client = new OpenComponents\Client([
             "serverRendering" => Configure::read('OCClient.serverRendering')
         ], [
             'oc-client'
@@ -56,6 +39,7 @@ class ClientComponent extends Component
         try {
             $components = $client->renderComponents($components)['html'];
         } catch (\Exception $e) {
+            debug($e->getMessage());die;
             $components = [
                 '<script>console.log("There was an error loading an OC component")</script>'
             ];
